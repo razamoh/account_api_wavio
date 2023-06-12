@@ -21,7 +21,7 @@ const v1Router = require('./routes/v1');
 app.use('/api/v1', getProfile, v1Router);
 app.use(errorHandler);
 
-app.get('*', (req, res) => {
-  res.send('This route does not exists!.: Incase if you are Use api versioning. ex: api/v1/<your route>', 404);
+app.all('*', (req, res) => {
+  res.send({ error: 'This route does not exists!.: Incase if you are using api versioning.make sure you are using correct version ex: api/v1/<your route>' }, 404);
 });
 module.exports = app;

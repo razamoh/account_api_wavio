@@ -12,6 +12,7 @@ const errorHandler = (err, req, res, next) => {
   console.log(JSON.stringify(err));
   if (err instanceof CustomError) {
     const { statusCode, message } = err.code;
+    res.setHeader('Content-Type', 'application/json');
     res.status(statusCode).json({ error: message });
   } else {
     next(err);

@@ -7,6 +7,7 @@ async function depositToClient(req, res, next) {
   try {
     const depositPromise = balanceService.depositToClient(userId, amount);
     const result = await depositPromise;
+
     res.json(result);
   } catch (error) {
     next(error);

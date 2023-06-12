@@ -1,5 +1,6 @@
 const { Op } = require('sequelize');
 const { CustomError, errorCodes } = require('@utils/errorHandler');
+
 const {
   Profile, Job, Contract, sequelize,
 } = require('@models');
