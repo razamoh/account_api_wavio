@@ -28,13 +28,13 @@ To simplify importing modules and reduce the length of file paths, we employ mod
 
 These practices and tools have been incorporated to enhance the stability, quality, and maintainability of the API implementation.
 such as 
-`"@root": ".",
+```"@root": ".",
     "@models": "src/models/",
     "@services": "src/services/v1/",
     "@utils": "src/utils/",
     "@controllers":"src/controllers/v1/",
     "@validations":"src/middleware/validations/"
-`
+```
 ## Indexes
 Added indexes to sequelize models to improve performance
 
