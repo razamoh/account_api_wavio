@@ -40,11 +40,11 @@ Added indexes to sequelize models to improve performance
 
 
 ## What iam missing
- API Documentation - I wanted to use swagger for api documentation. unfortunately could not make it .
- tests 
- rate limiting - To Secure from DDOS kind of attacks.
- React Front end - opyional
- logging
+ - API Documentation - I wanted to use swagger for api documentation. unfortunately could not make it .
+ - tests
+ - rate limiting - To Secure from DDOS kind of attacks.
+ - React Front end - opyional
+ - logging
 ## Improvements
 I wanted to implement proper error handling and logging. but due time constraint i could not make it 
 
