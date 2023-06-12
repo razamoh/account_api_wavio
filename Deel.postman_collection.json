@@ -1,0 +1,312 @@
+{
+	"info": {
+		"_postman_id": "e2dc9d5d-9021-4cfa-9d54-ef8d4501d6be",
+		"name": "Deel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Best Profession",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9zZmVyYS5pbyIsImlhdCI6MTY3MDk2NzExNSwibmJmIjoxNjcwOTY3MTE1LCJleHAiOjE2NzA5Njg5MTUsInVzZXIiOnsiaWQiOiIxMjA1OSIsImVtYWlsIjoicmF6YUBzaXRlLmlvIiwibmFtZSI6IlJhemEgUmFmYWlkZWVuIiwiYWRtaW5fcm9sZSI6InN1cGVyX2FkbWluIiwicm9sZV9pZCI6IjEifX0.Oa5o8mSvxVBV99RqkYIraXrRTuqhmmM-KWJwpK3I2FnTfSV2i5DWdzPIENuNUQFtMHIE9y7ft5BrteEY7BMUcH4KgHifyNLSnTyjpxSgB2UqddyIfQeJ-KFCOZd6oCm7-TFFnHcPWHSz3E2UJLbSqe9KAYZAO_Ci3TAbHx8wPkEso_77AjyRDxUdC_HmqD8_Q5YJPHMr1uPjoHw6KKUEDgf4Pt0021htvfmIu7KOZHipUz5VK08KbINaIDwU_6xkTp0n-9jcYc1ytFHnfUe7zFIFAdRIFpGsOA1DDQil2dMFaNXdaC3pmlP_mWdsXIHRpe50I5ZdjQm2eIL_UT-dzw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "profile_id",
+						"value": "1",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1/admin/best-profession?limit=1000'vvbvb&end=2021-01-01&start=2020-01-01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"best-profession"
+					],
+					"query": [
+						{
+							"key": "profile_id",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "limit",
+							"value": "1000'vvbvb"
+						},
+						{
+							"key": "end",
+							"value": "2021-01-01"
+						},
+						{
+							"key": "start",
+							"value": "2020-01-01"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Contract",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "profile_id",
+						"value": "1",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3001/api/v1/contracts/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"contracts",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UnPaid Jobs",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "profile_id",
+						"value": "5",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": \"100\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1//jobs/unpaid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"",
+						"jobs",
+						"unpaid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Load All Contracts",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "profile_id",
+						"value": "2",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3001/api/v1/contracts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"contracts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Pay Jobs",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "profile_id",
+						"value": "2",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3001/api/v1/jobs/2/pay",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"jobs",
+						"2",
+						"pay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deposit",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "profile_id",
+						"value": "2",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\": 100\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1/balances/deposit/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"balances",
+						"deposit",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Best Clients",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9zZmVyYS5pbyIsImlhdCI6MTY3MDk2NzExNSwibmJmIjoxNjcwOTY3MTE1LCJleHAiOjE2NzA5Njg5MTUsInVzZXIiOnsiaWQiOiIxMjA1OSIsImVtYWlsIjoicmF6YUBzaXRlLmlvIiwibmFtZSI6IlJhemEgUmFmYWlkZWVuIiwiYWRtaW5fcm9sZSI6InN1cGVyX2FkbWluIiwicm9sZV9pZCI6IjEifX0.Oa5o8mSvxVBV99RqkYIraXrRTuqhmmM-KWJwpK3I2FnTfSV2i5DWdzPIENuNUQFtMHIE9y7ft5BrteEY7BMUcH4KgHifyNLSnTyjpxSgB2UqddyIfQeJ-KFCOZd6oCm7-TFFnHcPWHSz3E2UJLbSqe9KAYZAO_Ci3TAbHx8wPkEso_77AjyRDxUdC_HmqD8_Q5YJPHMr1uPjoHw6KKUEDgf4Pt0021htvfmIu7KOZHipUz5VK08KbINaIDwU_6xkTp0n-9jcYc1ytFHnfUe7zFIFAdRIFpGsOA1DDQil2dMFaNXdaC3pmlP_mWdsXIHRpe50I5ZdjQm2eIL_UT-dzw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "profile_id",
+						"value": "1",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/v1/admin/best-clients?end=2021-01-01&start=2020-01-01",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"v1",
+						"admin",
+						"best-clients"
+					],
+					"query": [
+						{
+							"key": "profile_id",
+							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "end",
+							"value": "2021-01-01"
+						},
+						{
+							"key": "start",
+							"value": "2020-01-01"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
