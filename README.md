@@ -12,8 +12,8 @@ This API implementation includes support for versioning, ensuring that future ch
 All thr requests are using `/api/v1` 
 example : `http://localhost:3001/api/v1/contracts/3`
 
-I have included the postman collection in the root folder
-`Deel.postman_collection`
+I have included the [postman](./Deel.postman_collection.json) collection in the root folder
+[click here](./Deel.postman_collection.json) to view
 
 ## Request Validations
 To ensure the reliability and integrity of incoming requests, the API utilizes Express-validator npm package. This tool validates the data sent to the API, verifying that it conforms to the required format and meets the necessary criteria. By implementing request validations, we can prevent errors and enhance the overall stability of the API.
