@@ -1,16 +1,11 @@
 const { Op, col, fn } = require('sequelize');
-const {
-  Contract,
-  Job,
-  Profile,
-  sequelize,
-} = require('@models');
 
 const { CustomError, errorCodes } = require('@utils/errorHandler');
 
 // Get the profession that earned the most money for any contractor in the given time range
-async function getBestProfessionService(start, end, limit = 1) {
+async function getBestProfessionService(start, end, models, limit = 1) {
   try {
+    const { Contract, Job, Profile } = models;
     const professionColumn = 'Contract.Contractor.profession';
 
     const result = await Job.findAll({
@@ -50,8 +45,11 @@ async function getBestProfessionService(start, end, limit = 1) {
 }
 
 // Get the best clients based on the total amount paid within the given time range
-async function getBestClientsService(start, end, limit = 2) {
+async function getBestClientsService(start, end, models, limit = 2) {
   try {
+    const {
+      Contract, Job, Profile, sequelize,
+    } = models;
     const bestClients = await Job.findAll({
       attributes: [
         [sequelize.col('Contract->Client.id'), 'id'],

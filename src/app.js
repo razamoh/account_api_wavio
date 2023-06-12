@@ -6,14 +6,15 @@ const express = require('express');
 require('module-alias/register');
 const bodyParser = require('body-parser');
 const models = require('@models');
-const { errorHandler } = require('@utils/errorHandler');
+const errorHandlerUtils = require('@utils/errorHandler');
 const { getProfile } = require('./middleware/getProfile');
 
 const app = express();
-
+const { errorHandler } = errorHandlerUtils;
 app.use(bodyParser.json());
 app.set('sequelize', models.sequelize);
 app.set('models', models);
+app.set('error', errorHandlerUtils);
 
 // API routes
 const v1Router = require('./routes/v1');
@@ -22,6 +23,6 @@ app.use('/api/v1', getProfile, v1Router);
 app.use(errorHandler);
 
 app.all('*', (req, res) => {
-  res.send({ error: 'This route does not exists!.: Incase if you are using api versioning.make sure you are using correct version ex: api/v1/<your route>' }, 404);
+  res.status(404).send({ error: 'This route does not exists!.: Incase if you are using api versioning.make sure you are using correct version ex: api/v1/<your route>' });
 });
 module.exports = app;

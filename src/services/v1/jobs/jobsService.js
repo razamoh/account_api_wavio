@@ -1,12 +1,9 @@
-const {
-  Profile, Job, Contract, sequelize,
-} = require('@models');
-
 const { CustomError, errorCodes } = require('@utils/errorHandler');
 
 // Get all unpaid jobs for active contracts
-const getUnpaidJobsService = async () => {
+const getUnpaidJobsService = async (models) => {
   try {
+    const { Job, Contract } = models;
     const unpaidJobs = await Job.findAll({
       include: [
         {
@@ -28,7 +25,10 @@ const getUnpaidJobsService = async () => {
   }
 };
 
-const fetchJobAndContract = async (jobId, userId) => {
+const fetchJobAndContract = async (jobId, userId, models) => {
+  const {
+    Job, Contract, Profile,
+  } = models;
   const job = await Job.findByPk(jobId, {
     include: [
       {
@@ -68,10 +68,12 @@ const checkClientBalance = (client, jobAmount) => {
   }
 };
 
-const updateBalances = async (client, contract, contractor, jobAmount, transaction) => {
+const updateBalances = async (client, contract, contractor, jobAmount, transaction, models) => {
   const updatedClientBalance = client.balance - jobAmount;
   const updatedContractorBalance = contractor.balance + jobAmount;
-
+  const {
+    Job, Profile,
+  } = models;
   await Promise.all([
     Profile.update(
       { balance: updatedClientBalance },
@@ -106,14 +108,16 @@ const updateBalances = async (client, contract, contractor, jobAmount, transacti
   ]);
 };
 
-const payForJobService = async (jobId, userId) => {
+const payForJobService = async (jobId, userId, models) => {
   // Fetch the job and associated contract
-  const job = await fetchJobAndContract(jobId, userId);
-
+  const job = await fetchJobAndContract(jobId, userId, models);
+  const {
+    sequelize,
+  } = models;
   if (!job) {
     throw new CustomError(errorCodes.JOB_NOT_FOUND);
   }
-  console.log(job.Contract);
+
   const contract = job?.Contract;
   const client = contract?.Client?.dataValues;
   const contractor = contract?.Contractor?.dataValues;
@@ -134,7 +138,7 @@ const payForJobService = async (jobId, userId) => {
 
   try {
     // Update the balances in the database within the transaction
-    await updateBalances(client, contract, contractor, job.price, transaction);
+    await updateBalances(client, contract, contractor, job.price, transaction, models);
     await transaction.commit();
     return { message: 'Jobs paid.' };
   } catch (error) {

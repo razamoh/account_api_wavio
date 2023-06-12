@@ -1,8 +1,7 @@
 /* eslint-disable import/no-unresolved */
-const { getContractService, getContractsService } = require('@services/contracts');
 
 // GET /contracts/:id
-async function getContractById(req, res, next) {
+async function getContractById(req, res, next, getContractService) {
   const { id } = req.params;
   const { profile } = req;
 
@@ -17,7 +16,7 @@ async function getContractById(req, res, next) {
 }
 
 // GET /contracts
-async function getContracts(req, res, next) {
+async function getContracts(req, res, next, getContractsService) {
   const { profile } = req;
 
   try {

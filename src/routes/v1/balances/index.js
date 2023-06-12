@@ -3,9 +3,12 @@
 const express = require('express');
 
 const router = express.Router();
-const { depositToClient } = require('@controllers/balances');
+const balanceController = require('@controllers/balances');
 const { validateDepositBalance } = require('@validations');
+const balanceService = require('@services/balances');
 // POST /balances/deposit/:userId
-router.post('/deposit/:userId', validateDepositBalance, depositToClient);
+router.post('/deposit/:userId', validateDepositBalance, (res, req, next) => {
+  balanceController.depositToClient(res, req, next, balanceService);
+});
 
 module.exports = router;

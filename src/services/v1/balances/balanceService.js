@@ -1,16 +1,12 @@
 const { Op } = require('sequelize');
 const { CustomError, errorCodes } = require('@utils/errorHandler');
 
-const {
-  Profile, Job, Contract, sequelize,
-} = require('@models');
-
-const updateProfileBalance = async (userId, balance, transaction) => {
-  await Profile.update({ balance }, { where: { id: userId }, transaction });
+const updateProfileBalance = async (userId, balance, transaction, profile) => {
+  await profile.update({ balance }, { where: { id: userId }, transaction });
 };
 
-const getClient = async (userId) => {
-  const client = await Profile.findOne({ where: { id: userId, type: 'client' } });
+const getClient = async (userId, profile) => {
+  const client = await profile.findOne({ where: { id: userId, type: 'client' } });
   if (!client) {
     throw new CustomError(errorCodes.CLIENT_NOT_FOUND);
   }
@@ -32,8 +28,11 @@ const validateClientBalance = (client, sumJobsToPay, maxDepositAmount) => {
   }
 };
 
-const depositToClient = async (userId, amount) => {
-  const client = await getClient(userId);
+const depositToClient = async (userId, amount, models) => {
+  const {
+    Profile, Job, Contract, sequelize,
+  } = models;
+  const client = await getClient(userId, Profile);
   if (!client) {
     throw new CustomError(errorCodes.CLIENT_NOT_FOUND);
   }
@@ -66,7 +65,7 @@ const depositToClient = async (userId, amount) => {
   const transaction = await sequelize.transaction();
 
   try {
-    await updateProfileBalance(userId, currentBalance, transaction);
+    await updateProfileBalance(userId, currentBalance, transaction, Profile);
     await transaction.commit();
   } catch (error) {
     if (transaction) {

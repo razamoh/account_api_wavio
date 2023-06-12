@@ -1,9 +1,8 @@
-const { getUnpaidJobsService, payForJobService } = require('@services/jobs');
-
 // GET /jobs/unpaid
-async function getUnpaidJobs(req, res, next) {
+async function getUnpaidJobs(req, res, next, getUnpaidJobsService) {
   try {
-    const unpaidJobsPromise = getUnpaidJobsService();
+    const models = req.app.get('models');
+    const unpaidJobsPromise = getUnpaidJobsService(models);
     const unpaidJobs = await unpaidJobsPromise;
 
     res.json(unpaidJobs);
@@ -12,13 +11,14 @@ async function getUnpaidJobs(req, res, next) {
   }
 }
 
-async function payForJob(req, res, next) {
-  // eslint-disable-next-line camelcase
-  const { job_id } = req.params;
-  const { profile } = req;
-
+async function payForJob(req, res, next, payForJobService) {
   try {
-    const payForJobPromise = payForJobService(job_id, profile.id);
+  // eslint-disable-next-line camelcase
+    const { job_id } = req.params;
+    const { profile } = req;
+    const models = req.app.get('models');
+
+    const payForJobPromise = payForJobService(job_id, profile.id, models);
     const result = await payForJobPromise;
     res.json(result);
   } catch (error) {
