@@ -1,4 +1,4 @@
-async function depositToClient(req, res, next, balanceService) {
+const depositToClient = (balanceService) => async (req, res, next) => {
   const { userId } = req.params;
   const { amount } = req.body;
   const models = req.app.get('models');
@@ -10,7 +10,7 @@ async function depositToClient(req, res, next, balanceService) {
   } catch (error) {
     next(error);
   }
-}
+};
 
 module.exports = {
   depositToClient,

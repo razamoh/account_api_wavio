@@ -7,8 +7,6 @@ const balanceController = require('@controllers/balances');
 const { validateDepositBalance } = require('@validations');
 const balanceService = require('@services/balances');
 // POST /balances/deposit/:userId
-router.post('/deposit/:userId', validateDepositBalance, (res, req, next) => {
-  balanceController.depositToClient(res, req, next, balanceService);
-});
+router.post('/deposit/:userId', validateDepositBalance, balanceController.depositToClient(balanceService));
 
 module.exports = router;

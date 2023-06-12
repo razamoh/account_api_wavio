@@ -6,13 +6,9 @@ const { getContractService, getContractsService } = require('@services/contracts
 const { validateGetContractById, validateGetContracts } = require('@validations/contractValidation');
 
 // GET /contracts/:id
-router.get('/:id', validateGetContractById, (res, req, next) => {
-  contractController.getContractById(res, req, next, getContractService);
-});
+router.get('/:id', validateGetContractById, contractController.getContractById(getContractService));
 
 // GET /contracts
-router.get('/', validateGetContracts, (res, req, next) => {
-  contractController.getContracts(res, req, next, getContractsService);
-});
+router.get('/', validateGetContracts, contractController.getContracts(getContractsService));
 
 module.exports = router;

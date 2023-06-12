@@ -1,7 +1,7 @@
 /* eslint-disable import/no-unresolved */
 
 // GET /contracts/:id
-async function getContractById(req, res, next, getContractService) {
+const getContractById = (getContractService) => async (req, res, next) => {
   const { id } = req.params;
   const { profile } = req;
 
@@ -13,10 +13,10 @@ async function getContractById(req, res, next, getContractService) {
   } catch (error) {
     next(error);
   }
-}
+};
 
 // GET /contracts
-async function getContracts(req, res, next, getContractsService) {
+const getContracts = (getContractsService) => async (req, res, next) => {
   const { profile } = req;
 
   try {
@@ -27,7 +27,7 @@ async function getContracts(req, res, next, getContractsService) {
   } catch (error) {
     next(error);
   }
-}
+};
 
 module.exports = {
   getContractById,

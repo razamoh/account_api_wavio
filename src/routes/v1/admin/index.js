@@ -6,13 +6,9 @@ const { validateBestProfession, validateBestClients } = require('@validations');
 const { getBestProfessionService, getBestClientsService } = require('@services/admin');
 
 // GET /admin/best-profession?start=<date>&end=<date>
-router.get('/best-profession', validateBestProfession, (req, res, next) => {
-  adminController.getBestProfession(req, res, next, getBestProfessionService);
-});
+router.get('/best-profession', validateBestProfession, adminController.getBestProfession(getBestProfessionService));
 
 // GET /admin/best-clients?start=<date>&end=<date>&limit=<integer>
-router.get('/best-clients', validateBestClients, (req, res, next) => {
-  adminController.getBestClients(req, res, next, getBestClientsService);
-});
+router.get('/best-clients', validateBestClients, adminController.getBestClients(getBestClientsService));
 
 module.exports = router;

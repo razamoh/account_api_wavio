@@ -1,5 +1,5 @@
 // GET /jobs/unpaid
-async function getUnpaidJobs(req, res, next, getUnpaidJobsService) {
+const getUnpaidJobs = (getUnpaidJobsService) => async (req, res, next) => {
   try {
     const models = req.app.get('models');
     const unpaidJobsPromise = getUnpaidJobsService(models);
@@ -9,11 +9,11 @@ async function getUnpaidJobs(req, res, next, getUnpaidJobsService) {
   } catch (error) {
     next(error);
   }
-}
+};
 
-async function payForJob(req, res, next, payForJobService) {
+const payForJob = (payForJobService) => async (req, res, next) => {
   try {
-  // eslint-disable-next-line camelcase
+    // eslint-disable-next-line camelcase
     const { job_id } = req.params;
     const { profile } = req;
     const models = req.app.get('models');
@@ -25,7 +25,7 @@ async function payForJob(req, res, next, payForJobService) {
     console.error(error);
     next(error);
   }
-}
+};
 
 module.exports = {
   payForJob,

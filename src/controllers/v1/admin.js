@@ -1,5 +1,5 @@
 // GET /admin/best-profession
-async function getBestProfession(req, res, next, adminService) {
+const getBestProfession = (adminService) => async (req, res, next) => {
   const { start, end } = req.query;
   const models = req.app.get('models');
   try {
@@ -10,10 +10,10 @@ async function getBestProfession(req, res, next, adminService) {
   } catch (error) {
     next(error);
   }
-}
+};
 
 // GET /admin/best-clients
-async function getBestClients(req, res, next, adminService) {
+const getBestClients = (adminService) => async (req, res, next) => {
   const models = req.app.get('models');
   const { start, end, limit = 2 } = req.query;
 
@@ -25,7 +25,7 @@ async function getBestClients(req, res, next, adminService) {
   } catch (error) {
     next(error);
   }
-}
+};
 
 module.exports = {
   getBestProfession,
