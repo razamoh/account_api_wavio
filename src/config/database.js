@@ -1,6 +1,6 @@
 const dbConfig = {
   dialect: 'sqlite',
-  storage: './database.sqlite3',
+  storage: './deel.sqlite3',
   // Set the maximum number of concurrent connections
   pool: {
     max: 100,

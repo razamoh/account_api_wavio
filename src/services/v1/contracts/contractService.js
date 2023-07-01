@@ -22,7 +22,7 @@ async function getContractService(id, profile) {
 }
 
 // Get contracts belonging to the given profile
-async function getContractsService(profile) {
+async function getContractsService(profile, limit = 10000) {
   const contracts = await Contract.findAll({
     where: {
       [Op.or]: [
@@ -33,11 +33,11 @@ async function getContractsService(profile) {
         [Op.ne]: 'terminated',
       },
     },
+    limit,
   });
 
   return contracts ?? [];
 }
-
 module.exports = {
   getContractService,
   getContractsService,
